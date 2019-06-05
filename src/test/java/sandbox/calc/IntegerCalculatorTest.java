@@ -1,6 +1,7 @@
 package sandbox.calc;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +16,9 @@ public class IntegerCalculatorTest {
 		assertEquals(24, IntegerCalculator.eval("2*3*4"));
 		assertEquals(2, IntegerCalculator.eval("2*3*4/12"));
 		assertEquals(40, IntegerCalculator.eval("2^2*3*4-8"));
+		assertEquals(8, IntegerCalculator.eval("10-3+1"));
+		assertEquals(4, IntegerCalculator.eval("2*8/4"));
+		assertEquals(2, IntegerCalculator.eval("2*8/4*2"));
 	}
 	
 	@Test
@@ -32,11 +36,11 @@ public class IntegerCalculatorTest {
 		});
 	}
 
-//	@Test
-//	public void shouldCalculateNestedExpresions() {
-//		assertEquals(8, IntegerCalculator.eval("5+(5-2)"));
-//		assertEquals(40, IntegerCalculator.eval("5*(5+3)"));
-//		assertEquals(-18, IntegerCalculator.eval("2-2*(2*5)*(5-4)"));
-//	}
+	@Test
+	public void shouldCalculateNestedExpresions() {
+		assertEquals(8, IntegerCalculator.eval("5+(5-2)"));
+		assertEquals(40, IntegerCalculator.eval("5*(5+3)"));
+		assertEquals(-18, IntegerCalculator.eval("2-2*(2*5)*(5-4)"));
+	}
 
 }
