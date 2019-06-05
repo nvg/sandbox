@@ -41,6 +41,8 @@ public class IntegerCalculatorTest {
 		assertEquals(8, IntegerCalculator.eval("5+(5-2)"));
 		assertEquals(40, IntegerCalculator.eval("5*(5+3)"));
 		assertEquals(-18, IntegerCalculator.eval("2-2*(2*5)*(5-4)"));
+		assertEquals(64, IntegerCalculator.eval("2*2*2*(2*(2*2))"));
+		assertEquals(64, IntegerCalculator.eval("2*2*2*(2*(2*2"));
 	}
 
 }

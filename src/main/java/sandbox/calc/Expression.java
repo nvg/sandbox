@@ -9,12 +9,7 @@ import lombok.Data;
 @Data
 public class Expression implements Token {
 
-	private static final List<List<String>> OPS = new ArrayList<List<String>>();
-	static {
-		OPS.add(Arrays.asList(new String[] { "^" }));
-		OPS.add(Arrays.asList(new String[] { "*", "/" }));
-		OPS.add(Arrays.asList(new String[] { "-", "+" }));
-	}
+	private static final List<String> OPS = new ArrayList<>(Arrays.asList(new String[] { "^", "*", "/", "-", "+" }));
 
 	private List<Token> tokens = new ArrayList<Token>();
 
@@ -37,10 +32,8 @@ public class Expression implements Token {
 
 	@Override
 	public int getValue() {
-		for (List<String> ops : OPS) {
-			for (String op : ops) {
-				reduce(op);
-			}
+		for (String op : OPS) {
+			reduce(op);
 		}
 
 		return tokens.get(0).getValue();
