@@ -1,5 +1,8 @@
 package sandbox.lists;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +15,23 @@ public class LinkedListNode {
 	private int value;
 	private LinkedListNode next;
 
+	public LinkedListNode removeDuplicatesInON() {
+		Set<Integer> visitedNodes = new HashSet<Integer>();
+		visitedNodes.add(this.getValue());
+		
+		LinkedListNode prev = this, next = this.next;
+		while(next != null) {
+			if (visitedNodes.contains(next.getValue())) {
+				prev.setNext(next.getNext());
+			} else {
+				visitedNodes.add(next.value);
+				prev = next;
+			}			
+			next = next.getNext();
+		}
+		return this;
+	}
+	
 	public LinkedListNode removeDuplicates() {
 		LinkedListNode node = this;
 		while (node != null) {
@@ -19,6 +39,21 @@ public class LinkedListNode {
 			node = node.next;
 		}
 		return this;
+	}
+	
+	public LinkedListNode getKthToLast(int kth) {
+		int len = 0;
+		LinkedListNode n = this;
+		while(n != null) {
+			len++;
+			n = n.next;
+		}
+		
+		n = this;
+		for(int i = 1; i < (len - kth); i++) {
+			n = n.next;
+		}
+		return n;
 	}
 
 	private void removeDups(LinkedListNode node, int value) {

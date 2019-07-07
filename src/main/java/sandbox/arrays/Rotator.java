@@ -3,6 +3,9 @@ package sandbox.arrays;
 public class Rotator {
 
 	public int[][] rotate(int[][] matrix) {
+		// implement rotation in layers
+		// perform circular rotation top edge to right,
+		// right edge to bottom, bottom to left, left to top
 		for (int layer = 0; layer < matrix.length / 2; layer++) {
 			int first = layer;
 			int last = matrix.length - layer - 1;
