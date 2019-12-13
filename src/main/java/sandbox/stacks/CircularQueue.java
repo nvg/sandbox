@@ -2,34 +2,42 @@ package sandbox.stacks;
 
 public class CircularQueue<T> {
 
+	private static final int EMPTY = -1;
+	private static final int DEFAULT_SIZE = 10;
+
 	private Object[] values;
 
-	private int start;
-	private int end;
-	private int capacity;
-	private int size;
+	private int headIndex = EMPTY;
+	private int tailIndex = EMPTY;
+
+	public CircularQueue() {
+		this(DEFAULT_SIZE);
+	}
 
 	public CircularQueue(int capacity) {
 		values = new Object[capacity];
-		this.capacity = capacity;
 	}
 
 	public void enqueue(T value) {
 		if (isFull()) {
 			throw new RuntimeException("Queue overflow");
 		}
-		size++;
 
-		values[end] = value;
-		end = (end + 1) % capacity;
+		tailIndex = (tailIndex + 1) % values.length;
+		values[tailIndex] = value;
+
+		if (headIndex == EMPTY) {
+			headIndex = tailIndex;
+		}
 	}
 
 	public boolean isFull() {
-		return size == capacity;
+		int nextIndex = (tailIndex + 1) % values.length;
+		return nextIndex == headIndex;
 	}
 
 	public boolean isEmpty() {
-		return size == 0;
+		return headIndex == EMPTY;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -37,21 +45,24 @@ public class CircularQueue<T> {
 		if (isEmpty()) {
 			throw new RuntimeException("Queue underflow");
 		}
-		size--;
+		T result = (T) values[headIndex];
+		values[headIndex] = null;
 
-		T result = (T) values[start];
-		values[start] = null;
-		start = (start + 1) % capacity;
+		if (headIndex == tailIndex) {
+			headIndex = EMPTY;
+		} else {
+			headIndex = (headIndex + 1) % values.length;
+		}
 		return result;
 	}
 
 	@SuppressWarnings("unchecked")
 	public T peek() {
-		return (T) values[start];
+		return (T) values[headIndex];
 	}
 
 	public int getSize() {
-		return size;
+		return Math.abs(tailIndex - headIndex) % values.length + 1;
 	}
 
 }

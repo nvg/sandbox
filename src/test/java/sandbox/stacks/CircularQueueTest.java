@@ -11,8 +11,11 @@ class CircularQueueTest {
 		CircularQueue<Integer> q = new CircularQueue<Integer>(3);
 
 		q.enqueue(1);
+		assertEquals(1, q.getSize());
 		q.enqueue(2);
+		assertEquals(2, q.getSize());
 		q.enqueue(3);
+		assertEquals(3, q.getSize());
 
 		assertFalse(q.isEmpty());
 		assertTrue(q.isFull());
