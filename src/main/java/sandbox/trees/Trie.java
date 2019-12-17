@@ -12,6 +12,8 @@ public class Trie {
 }
 
 class Node {
+	
 	private Map<Character, Node> children = new HashMap<>();
 	boolean isCompleteWord;
+	
 }
