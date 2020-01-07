@@ -22,4 +22,15 @@ public class C00FindTradingMax {
 		return result;
 	}
 
+	public double findMaxON(double[][] prices) {
+		double minPrice = Double.MAX_VALUE, maxProfit = 0d;
+		for (double[] p : prices) {
+			double price = p[2];
+
+			maxProfit = Math.max(maxProfit, price - minPrice);
+			minPrice = Math.min(minPrice, price);
+		}
+		return maxProfit;
+	}
+
 }

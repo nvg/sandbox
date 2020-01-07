@@ -12,6 +12,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LinkedListNode {
 
+	public static LinkedListNode build(int... ints) {
+		LinkedListNode result = new LinkedListNode(ints[0]);
+		LinkedListNode node = result;
+		for (int i = 1; i < ints.length; i++) {
+			LinkedListNode n = new LinkedListNode(ints[i]);
+			node.next = n;
+			node = n;
+		}
+		return result;
+	}
+
 	private int value;
 	private LinkedListNode next;
 
@@ -208,6 +219,40 @@ public class LinkedListNode {
 		return 1 + getNext().getLength();
 	}
 
+	public LinkedListNode reverse() {
+		return reverse(this);
+	}
+
+	private LinkedListNode reverse(LinkedListNode node) {		
+		LinkedListNode previous = null;
+		LinkedListNode current = node;
+		LinkedListNode next;
+		
+		while (current != null) {
+			next = current.getNext();
+			current.setNext(previous);
+			
+			previous = current;
+			current = next;
+		}
+		
+		return previous;
+	}
+
+//	private LinkedListNode reverse(LinkedListNode node) {
+//		LinkedListNode prev = null;
+//		LinkedListNode current = node;
+//		LinkedListNode next = null;
+//		while (current != null) {
+//			next = current.getNext();
+//			current.setNext(prev);
+//			prev = current;
+//			current = next;
+//		}
+//		node = prev;
+//		return node;
+//	}
+
 	public LinkedListNode reverseAndClone() {
 		return reverseAndClone(this);
 	}
@@ -280,22 +325,22 @@ public class LinkedListNode {
 				break;
 			}
 		}
-		
+
 		// if no meeting point (both cursors are null)
 		if (fast == null || fast.next == null) {
 			return null;
 		}
-		
+
 		// set slow to head, keep fast at the meeting point
 		// each are k steps from the loop start
 		slow = head;
-		
-		// move both at the same pace - they will meet at the loop start 
-		while(slow != fast) {
+
+		// move both at the same pace - they will meet at the loop start
+		while (slow != fast) {
 			slow = slow.next;
 			fast = fast.next;
 		}
-		
+
 		// both now point to the start of the loop
 		return fast;
 	}

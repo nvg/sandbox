@@ -23,6 +23,14 @@ class LinkedListNodeTest {
 	}
 
 	@Test
+	void shouldReverse() {
+		LinkedListNode list = toList(1, 2, 3, 4, 5);
+		LinkedListNode check = toList(5, 4, 3, 2, 1);
+
+		assertEquals(check, list.reverse());
+	}
+
+	@Test
 	void shouldRemoveDuplicates() {
 		LinkedListNode list = toList(1, 2, 1, 2);
 		LinkedListNode check = toList(1, 2);
@@ -75,27 +83,27 @@ class LinkedListNodeTest {
 		l1 = toList(1, 2, 3, 4, 5);
 		assertEquals(5, l1.getLength());
 	}
-	
+
 	@Test
 	void shouldInverse() {
 		LinkedListNode l = toList(1, 2, 3, 4, 5);
 		assertEquals(toList(5, 4, 3, 2, 1), l.reverseAndClone());
 	}
-	
+
 	@Test
 	void shouldFindKthNode() {
 		LinkedListNode l = toList(1, 2, 3, 4, 5);
-		assertEquals(1, l.getKth(0).getValue());		
-		assertEquals(5, l.getKth(4).getValue());		
+		assertEquals(1, l.getKth(0).getValue());
+		assertEquals(5, l.getKth(4).getValue());
 	}
-	
+
 	@Test
 	void shouldFindNoIntersection() {
 		LinkedListNode l1 = toList(1, 2, 3, 4, 5);
 		LinkedListNode l2 = toList(1, 2, 3, 4, 5);
-		assertTrue(l1.isIntersecting(l2) == null);		
+		assertTrue(l1.isIntersecting(l2) == null);
 	}
-	
+
 	@Test
 	void shouldFindIntersection() {
 		LinkedListNode tail = toList(98, 99, 100);
@@ -103,23 +111,23 @@ class LinkedListNodeTest {
 		l1.getLast().setNext(tail);
 		LinkedListNode l2 = toList(1, 2, 3, 4, 5);
 		l2.setNext(tail);
-		
-		assertTrue(l1.isIntersecting(l2) == tail);		
+
+		assertTrue(l1.isIntersecting(l2) == tail);
 	}
-	
+
 	@Test
 	void shouldNotFindLoops() {
 		LinkedListNode l1 = toList(1, 2, 3);
-		assertFalse(l1.getLoopStart() != null);		
+		assertFalse(l1.getLoopStart() != null);
 	}
-	
+
 	@Test
 	void shouldFindLoops() {
 		LinkedListNode l1 = toList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 		LinkedListNode kth = l1.getKth(4); // 5
 		LinkedListNode last = kth.getLast();
 		last.setNext(kth);
-		
-		assertTrue(l1.getLoopStart() == kth);		
+
+		assertTrue(l1.getLoopStart() == kth);
 	}
 }
