@@ -1,8 +1,8 @@
-package ctci.rover;
+package tw.rover;
 
 import org.junit.jupiter.api.Test;
 
-import ctci.rover.Main;
+import tw.rover.Main;
 
 class RoverTest {
 

@@ -223,35 +223,21 @@ public class LinkedListNode {
 		return reverse(this);
 	}
 
-	private LinkedListNode reverse(LinkedListNode node) {		
+	private LinkedListNode reverse(LinkedListNode node) {
 		LinkedListNode previous = null;
 		LinkedListNode current = node;
 		LinkedListNode next;
-		
+
 		while (current != null) {
 			next = current.getNext();
 			current.setNext(previous);
-			
+
 			previous = current;
 			current = next;
 		}
-		
+
 		return previous;
 	}
-
-//	private LinkedListNode reverse(LinkedListNode node) {
-//		LinkedListNode prev = null;
-//		LinkedListNode current = node;
-//		LinkedListNode next = null;
-//		while (current != null) {
-//			next = current.getNext();
-//			current.setNext(prev);
-//			prev = current;
-//			current = next;
-//		}
-//		node = prev;
-//		return node;
-//	}
 
 	public LinkedListNode reverseAndClone() {
 		return reverseAndClone(this);
@@ -343,5 +329,45 @@ public class LinkedListNode {
 
 		// both now point to the start of the loop
 		return fast;
+	}
+
+	public LinkedListNode findKthLastInOnePass(int k) {
+		LinkedListNode current = this;
+		LinkedListNode kthLast = this;
+		for (int i = 0; i < k; i++) {
+			if (current == null) {
+				throw new IllegalArgumentException("List doesn't have enough elements");
+			}
+			current = current.getNext();
+		}
+
+		while (current != null) {
+			current = current.getNext();
+			kthLast = kthLast.getNext();
+		}
+
+		return kthLast;
+	}
+
+	public LinkedListNode findMiddleInOnePass() {
+		LinkedListNode current = this;
+		LinkedListNode middle = this;
+		int len = 0;
+
+		while (current.getNext() != null) {
+			len++;
+
+			if (len % 2 == 0) {
+				middle = middle.getNext();
+			}
+
+			current = current.getNext();
+		}
+
+		if (len % 2 == 1) {
+			middle = middle.getNext();
+		}
+
+		return middle;
 	}
 }

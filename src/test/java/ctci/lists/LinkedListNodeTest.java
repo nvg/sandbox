@@ -123,6 +123,20 @@ class LinkedListNodeTest {
 		LinkedListNode l1 = toList(1, 2, 3);
 		assertFalse(l1.getLoopStart() != null);
 	}
+	
+	@Test
+	void shouldFindKthLast() {
+		LinkedListNode l = toList(1, 2, 3, 4, 5, 6, 7);
+		assertEquals(6, l.findKthLastInOnePass(2).getValue());
+	}
+	
+	@Test
+	void shouldFindMiddle() {
+		LinkedListNode l = toList(1, 2, 3, 4, 5, 6, 7);
+		assertEquals(4, l.findMiddleInOnePass().getValue());
+		l = toList(1, 2, 3, 4);
+		assertEquals(3, l.findMiddleInOnePass().getValue());
+	}
 
 	@Test
 	void shouldFindLoops() {

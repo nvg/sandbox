@@ -14,6 +14,4 @@ class StatUtilsTest {
 		assertEquals(394, StatUtils.getArithmeticMean(vals), 0.0001);
 	}
 	
-	
-
 }

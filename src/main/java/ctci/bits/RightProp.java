@@ -1,13 +1,7 @@
 package ctci.bits;
 
 public class RightProp {
-	
-	public static void main(String[] args) {
-		int x = 0b01010000;
-		System.out.println(Integer.toBinaryString(x));
-		System.out.println(Integer.toBinaryString(rightPropagate(x)));
-	}
-
+		
 	public static int rightPropagate(int n) {
 		int i = 0;
 		for (; i < Integer.BYTES * 8; i++) {
