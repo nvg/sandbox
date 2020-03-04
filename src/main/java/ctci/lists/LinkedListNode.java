@@ -219,6 +219,18 @@ public class LinkedListNode {
 		return 1 + getNext().getLength();
 	}
 
+	public LinkedListNode rev(LinkedListNode n) {
+		LinkedListNode next = null, prev = null;
+		LinkedListNode curr = n;
+		while(curr != null) {
+			next = curr.getNext();
+			curr.setNext(prev);
+			prev = curr;
+			curr = next;
+		}
+		return prev;
+	}
+	
 	public LinkedListNode reverse() {
 		return reverse(this);
 	}

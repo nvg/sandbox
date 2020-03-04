@@ -26,6 +26,14 @@ class LinkedListNodeTest {
 	}
 
 	@Test
+	void shouldRev() {
+		LinkedListNode list = toList(1, 2, 3, 4, 5);
+		LinkedListNode check = toList(5, 4, 3, 2, 1);
+		
+		assertEquals(check, list.rev(list));
+	}
+	
+	@Test
 	void shouldReverse() {
 		LinkedListNode list = toList(1, 2, 3, 4, 5);
 		LinkedListNode check = toList(5, 4, 3, 2, 1);
