@@ -16,9 +16,23 @@ class RegionSizeTest {
 	};
 	
 	@Test
-	void test() {
+	void testRegion() {
 		RegionSize s = new RegionSize();
 		assertEquals(7, s.getLargestRegion(matrix));
+	}
+	
+	@Test
+	void testAll() {
+		RegionSize s = new RegionSize();
+		assertEquals(4, s.getLargestRegion(new int[][] { { 1, 1 }, { 1, 1 } }));
+		assertEquals(1, s.getLargestRegion(new int[][] { { 1 } }));
+	}
+	
+	@Test
+	void testNone() {
+		RegionSize s = new RegionSize();
+		assertEquals(0, s.getLargestRegion(new int[][] { { 0, 0 }, { 0, 0 } }));
+		assertEquals(0, s.getLargestRegion(new int[][] { { 0 } }));
 	}
 
 }

@@ -20,11 +20,10 @@ public class RegionSize {
 		int size = 1;
 		for (int r = row - 1; r <= row + 1; r++) {
 			for (int c = col - 1; c <= col + 1; c++) {
-//				if (r == row && r == col) { // avoid counting self
-//					continue;
-//				}
-				
 				size += getRegionsSize(matrix, r, c);
+//				if (r != row || c != col) {
+//					size += getRegionsSize(matrix, r, c);
+//				}
 			}
 		}
 		return size;
